@@ -1,0 +1,108 @@
+﻿@model Dyt_APP.Models.Classes.Client
+
+@{
+    ViewBag.Title = "CalculateBMI";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>BMI Hesapla</h2>
+<br />
+@using (Html.BeginForm("CalculateBMI", "Admin", FormMethod.Post))
+{
+
+    @Html.LabelFor(x => x.ID)
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+
+    <br />
+    <label for="gender">Cinsiyet Seçin:</label>
+    <select name="gender" id="gender">
+        <option value="0">Erkek</option>
+        <option value="1">Kadın</option>
+    </select>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.Date)
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Age)
+    @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Weight)
+    @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Height)
+    @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+    <br />
+    <br />
+
+    <div>
+        <input type="submit" value="Hesapla" class="btn btn-success" />
+
+    </div>
+    <br />
+
+
+}
+
+<div>
+    <h3>Önceki Ölçüm Sonuçları</h3>
+    @if (Model != null && Model.BMIs != null && Model.BMIs.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>Kilo</th>
+                <th>BMI</th>
+                <th>MinBMI</th>
+                <th>MaxBMI</th>
+                <th>İdeal Kilo</th>
+                <th>Hesaplama Tarihi</th>
+            </tr>
+            @foreach (var bmiData in Model.BMIs)
+            {
+                <tr>
+                    <td>@bmiData.Weight</td>
+                    <td>@bmiData.BmiCalculation</td>
+                    <td>@bmiData.MinBMI</td>
+                    <td>@bmiData.MaxBMI</td>
+                    <td>@bmiData.IdealWeight</td>
+                    <td>@bmiData.CalculationDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Önceki BMI hesaplamaları bulunmuyor.</p>
+    }
+
+</div>
+
+@if (ViewBag.BMI != null)
+{
+
+    <div>
+        <table class="table">
+            <tr class="info">
+                <td>Vücut Kitle İndeksiniz (BMI)</td>
+                <td>@ViewBag.BMI</td>
+            </tr>
+            <tr class="success">
+                <td>Minimum olması gereken Vücut Kitle İndeksiniz (BMI)</td>
+                <td>@ViewBag.MinBMI</td>
+            </tr>
+            <tr class="warning">
+                <td>Maksimum olması gereken Vücut Kitle İndeksiniz (BMI)</td>
+                <td>@ViewBag.MaxBMI</td>
+            </tr>
+            <tr class="danger">
+                <td>İdeal Vücut Kitle İndeksiniz (BMI)</td>
+                <td>@ViewBag.IdealWeight</td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+
+
+
+

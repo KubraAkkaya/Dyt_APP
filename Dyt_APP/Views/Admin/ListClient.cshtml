@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "ListClient";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>MÜŞTERİLER</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>  ID </th>
+        <th>  ADI </th>
+        <th>  SOYADI </th>
+        <th>  TELEFON </th>
+        <th>  CİNSİYET </th>
+        <th>  YAŞ </th>
+        <th>  KİLO </th>
+        <th>  BOY </th>
+        <th>  TARİH </th>
+        <th>  DURUM </th>
+        <th>  SİL </th>
+        <th>  DÜZENLE </th>
+        <th>  BMI  </th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <th> @x.ID </th>
+            <th> @x.Name </th>
+            <th> @x.Surname </th>
+            <th> @x.Phone </th>
+            <th> @x.Gender </th>
+            <th> @x.Age </th>
+            <th> @x.Weight </th>
+            <th> @x.Height </th>
+            <th> @x.Date </th>
+            <th> @x.Station </th>
+            <th> <a href="/Admin/DeleteClient/@x.ID" class="btn btn-danger">Sil</a></th>
+            <th> <a href="/Admin/GetClient/@x.ID" class="btn btn-warning">Düzenle</a></th>
+            <th> <a href="/Admin/CalculateBMI/@x.ID" class="btn btn-info">Hesapla</a></th>
+        </tr>
+    }
+</table>
+
+<a href="/Admin/NewClient" class="btn btn-info">MÜŞTERİ EKLE</a>
+

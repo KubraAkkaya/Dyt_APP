@@ -1,0 +1,15 @@
+﻿@model Dyt_APP.Models.Classes.BMI
+
+@{
+    ViewBag.Title = "AddBMI";
+    Layout = "~/Views/Admin/CalculateBMI.cshtml";
+}
+
+<h2>AddBMI</h2>
+@using (Html.BeginForm("CalculateBMI", "Admin", FormMethod.Post))
+{
+
+    @Html.LabelFor(x => x.ClientId)
+    @Html.TextBoxFor(x => x.ClientId, new { @class = "form-control" })
+
+}

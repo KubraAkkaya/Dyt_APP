@@ -1,0 +1,51 @@
+﻿@model Dyt_APP.Models.Classes.Client
+@{
+    ViewBag.Title = "NewClient";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Müşteri Ekle</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Surname)
+    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(x => x.Weight)
+    @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Height)
+    @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Age)
+    @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+    <br />
+
+
+    @Html.LabelFor(x => x.Date)
+    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Phone)
+    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+    <br />
+    <label for="gender">Cinsiyet Seçin:</label>
+    <select name="gender" id="gender">
+        <option value="0">Erkek</option>
+        <option value="1">Kadın</option>
+    </select>
+    <br />
+    <br />
+    <label for="station">Durum Seçin:</label>
+    <select name="station" id="station">
+        <option value="0">Aktif</option>
+        <option value="1">Pasif</option>
+    </select>
+
+    <br />
+    <br />
+
+    <button class="btn btn-primary">Müşteri Ekle</button>
+</form>
