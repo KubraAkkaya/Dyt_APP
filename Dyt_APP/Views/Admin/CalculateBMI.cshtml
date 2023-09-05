@@ -1,9 +1,11 @@
 ﻿@model Dyt_APP.Models.Classes.Client
 
+
 @{
     ViewBag.Title = "CalculateBMI";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <h2>BMI Hesapla</h2>
 <br />
 @using (Html.BeginForm("CalculateBMI", "Admin", FormMethod.Post))
@@ -15,8 +17,8 @@
     <br />
     <label for="gender">Cinsiyet Seçin:</label>
     <select name="gender" id="gender">
-        <option value="0">Erkek</option>
-        <option value="1">Kadın</option>
+        <option value="0" @(Model.Gender == Dyt_APP.Models.Classes.Gender.Male ? "selected" : "")>Erkek</option>
+        <option value="1" @(Model.Gender == Dyt_APP.Models.Classes.Gender.Female ? "selected" : "")>Kadın</option>
     </select>
     <br />
     <br />
@@ -39,42 +41,43 @@
 
     </div>
     <br />
+    <div>
+        <h3>Önceki Ölçüm Sonuçları</h3>
+        <br />
+        @if (Model != null && Model.BMIs != null && Model.BMIs.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th>Kilo</th>
+                    <th>BMI</th>
+                    <th>MinBMI</th>
+                    <th>MaxBMI</th>
+                    <th>İdeal Kilo</th>
+                    <th>Hesaplama Tarihi</th>
+                </tr>
+                @foreach (var bmiData in Model.BMIs.Where(b => b.ClientId == Model.ID))
+                {
+                    <tr>
+                        <td>@bmiData.Weight</td>
+                        <td>@bmiData.BmiCalculation</td>
+                        <td>@bmiData.MinBMI</td>
+                        <td>@bmiData.MaxBMI</td>
+                        <td>@bmiData.IdealWeight</td>
+                        <td>@bmiData.CalculationDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>Önceki BMI hesaplamaları bulunmuyor.</p>
+        }
+
+    </div>
 
 
 }
 
-<div>
-    <h3>Önceki Ölçüm Sonuçları</h3>
-    @if (Model != null && Model.BMIs != null && Model.BMIs.Any())
-    {
-        <table class="table">
-            <tr>
-                <th>Kilo</th>
-                <th>BMI</th>
-                <th>MinBMI</th>
-                <th>MaxBMI</th>
-                <th>İdeal Kilo</th>
-                <th>Hesaplama Tarihi</th>
-            </tr>
-            @foreach (var bmiData in Model.BMIs)
-            {
-                <tr>
-                    <td>@bmiData.Weight</td>
-                    <td>@bmiData.BmiCalculation</td>
-                    <td>@bmiData.MinBMI</td>
-                    <td>@bmiData.MaxBMI</td>
-                    <td>@bmiData.IdealWeight</td>
-                    <td>@bmiData.CalculationDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
-                </tr>
-            }
-        </table>
-    }
-    else
-    {
-        <p>Önceki BMI hesaplamaları bulunmuyor.</p>
-    }
-
-</div>
 
 @if (ViewBag.BMI != null)
 {
@@ -102,7 +105,38 @@
     </div>
 }
 
+<!--
+    <div>
+        <h3>Önceki Ölçüm Sonuçları</h3>
+        <br />
+        @if (Model != null && Model.BMIs != null && Model.BMIs.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th>Kilo</th>
+                    <th>BMI</th>
+                    <th>MinBMI</th>
+                    <th>MaxBMI</th>
+                    <th>İdeal Kilo</th>
+                    <th>Hesaplama Tarihi</th>
+                </tr>
+                @foreach (var bmiData in Model.BMIs)
+                {
+                    <tr>
+                        <td>@bmiData.Weight</td>
+                        <td>@bmiData.BmiCalculation</td>
+                        <td>@bmiData.MinBMI</td>
+                        <td>@bmiData.MaxBMI</td>
+                        <td>@bmiData.IdealWeight</td>
+                        <td>@bmiData.CalculationDate.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>Önceki BMI hesaplamaları bulunmuyor.</p>
+        }
 
-
-
-
+    </div>
+-->

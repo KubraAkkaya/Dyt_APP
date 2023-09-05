@@ -36,15 +36,15 @@
     <br />
     <label for="gender">Cinsiyet Seçin:</label>
     <select name="gender" id="gender">
-        <option value="0">Erkek</option>
-        <option value="1">Kadın</option>
+        <option value="0" @(Model.Gender == Dyt_APP.Models.Classes.Gender.Male ? "selected" : "")>Erkek</option>
+        <option value="1" @(Model.Gender == Dyt_APP.Models.Classes.Gender.Female ? "selected" : "")>Kadın</option>
     </select>
     <br />
     <br />
-    <label for="station">Cinsiyet Seçin:</label>
+    <label for="station">Durum Seçin:</label>
     <select name="station" id="station">
-        <option value="0">Aktif</option>
-        <option value="1">Pasif</option>
+        <option value="0" @(Model.Station == Dyt_APP.Models.Classes.Station.Active ? "selected" : "")>Aktif</option>
+        <option value="1" @(Model.Station == Dyt_APP.Models.Classes.Station.Pasive ? "selected" : "")>Pasif</option>
     </select>
     <br />
     <br />

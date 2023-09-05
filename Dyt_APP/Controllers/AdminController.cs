@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -218,27 +217,38 @@ namespace Dyt_APP.Controllers
 
                 return View();
         }
-        
+        [HttpGet]
         public ActionResult CalculateBMI(int id)
         {
             var findedClient = contextAdmin.Clients.Find(id);
-
+            var bmiList = contextAdmin.BMIs.Where(b => b.ClientId == id).ToList();
+            ViewBag.BMIList = bmiList;
+            var genders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "Erkek" },
+                new SelectListItem { Value = "1", Text = "Kadın" }
+            }, "Value", "Text", findedClient.Gender.ToString());
+            ViewBag.Gender = genders;
             return View("CalculateBMI", findedClient);
         }
 
         [HttpPost]
         public ActionResult CalculateBMI(int id, Gender gender, int age, double weight, double height)
-        {
-            var clientWithBMI = contextAdmin.Clients
-            .Where(c => c.ID == id) // İstenen müşteriyi seçiyoruz
-            .Include(c => c.BMI)   // BMI ilişkisini dahil ediyoruz
-            .FirstOrDefault();     // İlk öğeyi veya varsayılan değeri alıyoruz
-
+        {   
+            var Client = contextAdmin.Clients.Find(id);
+            var bmiList = contextAdmin.BMIs.Where(b => b.ClientId == id).ToList();
+            ViewBag.BMIList = bmiList;
+            var genders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "Erkek" },
+                new SelectListItem { Value = "1", Text = "Kadın" }
+            }, "Value", "Text", Client.Gender.ToString());
+            ViewBag.Gender = genders;
+            
             if (ModelState.IsValid)
             {
-                
                 double bmi = weight / (height * height);
-                clientWithBMI.BMI.BmiCalculation = bmi;
+                
                 ViewBag.BMI = bmi;
                 double minBmi = 0;
                 double maxBmi = 0;
@@ -252,23 +262,18 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 18;
                         maxBmi = 23;
-                        clientWithBMI.BMI.MaxBMI= maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI= minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight= 20 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 20 * (height * height);
+
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 20 * (height * height);
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 19;
                         maxBmi = 24;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 21 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 21 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 21 * (height * height);
                     }
 
                 }
@@ -278,23 +283,17 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 19;
                         maxBmi = 24;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 21 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 21 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 21 * (height * height);
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 20;
                         maxBmi = 25;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 22 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 22 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 22 * (height * height);
                     }
 
                 }
@@ -304,24 +303,18 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 20;
                         maxBmi = 25;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 22 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 22 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 22 * (height * height);
 
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 21;
                         maxBmi = 26;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 23 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 23 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 23 * (height * height);
 
                     }
 
@@ -332,24 +325,18 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 21;
                         maxBmi = 26;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 23 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 23 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 23 * (height * height);
 
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 22;
                         maxBmi = 27;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 24 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 24 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 24 * (height * height);
 
                     }
 
@@ -360,24 +347,18 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 22;
                         maxBmi = 27;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 24 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 24 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 24 * (height * height);
 
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 23;
                         maxBmi = 28;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 25 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 25 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 25 * (height * height);
 
                     }
 
@@ -388,57 +369,53 @@ namespace Dyt_APP.Controllers
                     {
                         minBmi = 23;
                         maxBmi = 28;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 25 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 25 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 25 * (height * height);
 
                     }
                     else if (gender == Gender.Male)
                     {
                         minBmi = 24;
                         maxBmi = 29;
-                        clientWithBMI.BMI.MaxBMI = maxBmi * (height * height);
-                        clientWithBMI.BMI.MinBMI = minBmi * (height * height);
-                        clientWithBMI.BMI.IdealWeight = 26 * (height * height);
-                        ViewBag.MinBMI = minBmi * (height * height);
-                        ViewBag.MaxBMI = maxBmi * (height * height);
-                        ViewBag.IdealWeight = 26 * (height * height);
+                        MinBMI = minBmi * (height * height);
+                        MaxBMI = maxBmi * (height * height);
+                        IdealWeight = 26 * (height * height);
 
                     }
                 }
 
-                if (clientWithBMI.ID != null)
+                ViewBag.MinBMI = MinBMI;
+                ViewBag.MaxBMI = MaxBMI;
+                ViewBag.IdealWeight = IdealWeight;
+                ViewBag.Weight = weight;
+                if (Client != null)
                 {
                     var newBMI = new BMI
                     {
-                        Weight = weight,
-                        MaxBMI = maxBmi,
-                        MinBMI = minBmi,
+                        MaxBMI = MaxBMI,
+                        Weight=weight,
+                        MinBMI = MinBMI,
                         BmiCalculation = bmi,
                         IdealWeight = IdealWeight,
                         CalculationDate = DateTime.Now,
-                        ClientId = clientWithBMI.ID
+                        ClientId = Client.ID
                     };
 
                     contextAdmin.BMIs.Add(newBMI);
                     contextAdmin.SaveChanges();
                 }
-
-                return View("CalculateBMI", clientWithBMI);
-
+   
+                return View("CalculateBMI", Client);
                 //return View("AddBMI", new { MaxBMI= MaxBMI, MinBMI= MinBMI, IdealWeight= IdealWeight, weight = weight, height = height });
             }
             else
             {
-                // Model geçerli değilse, formu aynı sayfada göstermek için bu sayfayı yeniden görüntüleyin.
                 return View();
             }
         }
 
-
+        /*
         [HttpPost]
         public ActionResult AddBMI(int clientId,double maxBmi, double minBmi, double idealWeight, double weight, double height)
         {
@@ -464,6 +441,7 @@ namespace Dyt_APP.Controllers
 
             return RedirectToAction("Index");
         }
+        */
 
     }
 }
