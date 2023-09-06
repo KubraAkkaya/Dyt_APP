@@ -11,9 +11,6 @@
 @using (Html.BeginForm("CalculateBMI", "Admin", FormMethod.Post))
 {
 
-    @Html.LabelFor(x => x.ID)
-    @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
-
     <br />
     <label for="gender">Cinsiyet Seçin:</label>
     <select name="gender" id="gender">
@@ -22,18 +19,39 @@
     </select>
     <br />
     <br />
-    @Html.LabelFor(x => x.Date)
+    <label for="Date">Tarih</label>
     @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Age)
+    <label for="Age">Yaş</label>
     @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Weight)
+    <label for="Weight">Kilo</label>
     @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Height)
+    <label for="Height">Boy</label>
     @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
     <br />
+
+    @Html.LabelFor(x => x.BMI.FatMass)
+    @Html.TextBoxFor(x => x.BMI.FatMass, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.MuscleMass)
+    @Html.TextBoxFor(x => x.BMI.MuscleMass, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.Kcal)
+    @Html.TextBoxFor(x => x.BMI.Kcal, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.BoneMass)
+    @Html.TextBoxFor(x => x.BMI.BoneMass, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.MetabolicAge)
+    @Html.TextBoxFor(x => x.BMI.MetabolicAge, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.LiquidMass)
+    @Html.TextBoxFor(x => x.BMI.LiquidMass, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.BMI.InnerFat)
+    @Html.TextBoxFor(x => x.BMI.InnerFat, new { @class = "form-control" })
     <br />
 
     <div>
@@ -48,18 +66,32 @@
         {
             <table class="table">
                 <tr>
-                    <th>Kilo</th>
+                    <th>KİLO</th>
+                    <th>YAĞ %</th>
+                    <th>KAS %</th>
                     <th>BMI</th>
-                    <th>MinBMI</th>
-                    <th>MaxBMI</th>
-                    <th>İdeal Kilo</th>
+                    <th>KCAL</th>
+                    <th>KEMİK %</th>
+                    <th>MET.YAŞ</th>
+                    <th>SIVI %</th>
+                    <th>İÇ YAĞ</th>
+                    <th>MİNBMI</th>
+                    <th>MAXBMI</th>
+                    <th>İDEAL KG</th>
                     <th>Hesaplama Tarihi</th>
                 </tr>
                 @foreach (var bmiData in Model.BMIs.Where(b => b.ClientId == Model.ID))
                 {
                     <tr>
                         <td>@bmiData.Weight</td>
+                        <td>@bmiData.FatMass</td>
+                        <td>@bmiData.MuscleMass</td>
                         <td>@bmiData.BmiCalculation</td>
+                        <td>@bmiData.Kcal</td>
+                        <td>@bmiData.BoneMass</td>
+                        <td>@bmiData.MetabolicAge</td>
+                        <td>@bmiData.LiquidMass</td>
+                        <td>@bmiData.InnerFat</td>
                         <td>@bmiData.MinBMI</td>
                         <td>@bmiData.MaxBMI</td>
                         <td>@bmiData.IdealWeight</td>
@@ -86,19 +118,49 @@
         <table class="table">
             <tr class="info">
                 <td>Vücut Kitle İndeksiniz (BMI)</td>
-                <td>@ViewBag.BMI</td>
+                <td><b>@ViewBag.BMI</b></td>
             </tr>
             <tr class="success">
                 <td>Minimum olması gereken Vücut Kitle İndeksiniz (BMI)</td>
-                <td>@ViewBag.MinBMI</td>
+                <td><b>@ViewBag.MinBMI</b></td>
             </tr>
             <tr class="warning">
                 <td>Maksimum olması gereken Vücut Kitle İndeksiniz (BMI)</td>
-                <td>@ViewBag.MaxBMI</td>
+                <td><b>@ViewBag.MaxBMI</b></td>
             </tr>
             <tr class="danger">
                 <td>İdeal Vücut Kitle İndeksiniz (BMI)</td>
-                <td>@ViewBag.IdealWeight</td>
+                <td><b>@ViewBag.IdealWeight</b></td>
+            </tr>
+            <tr class="info">
+                <td>Yağ %</td>
+                <td>@ViewBag.FatMass</td>
+            </tr>
+
+            <tr class="success">
+                <td>Kas %</td>
+                <td>@ViewBag.MuscleMass</td>
+            </tr>
+            <tr class="warning">
+                <td>Kcal</td>
+                <td>@ViewBag.Kcal</td>
+            </tr>
+            <tr class="danger">
+                <td>Kemik %</td>
+                <td>@ViewBag.BoneMass</td>
+            </tr>
+            <tr class="info">
+                <td>Met.Yaş</td>
+                <td>@ViewBag.MetabolicAge</td>
+            </tr>
+
+            <tr class="success">
+                <td>Sıvı %</td>
+                <td>@ViewBag.LiquidMass</td>
+            </tr>
+            <tr class="warning">
+                <td>İç Yağ</td>
+                <td>@ViewBag.InnerFat</td>
             </tr>
         </table>
 

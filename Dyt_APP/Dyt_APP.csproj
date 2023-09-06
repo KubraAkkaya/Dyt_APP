@@ -217,6 +217,7 @@
     <Content Include="Views\Admin\CalculateBMI.cshtml" />
     <Content Include="Views\Admin\MainCalculateBMI.cshtml" />
     <Content Include="Views\Admin\AddBMI.cshtml" />
+    <Content Include="Views\Admin\ClientDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

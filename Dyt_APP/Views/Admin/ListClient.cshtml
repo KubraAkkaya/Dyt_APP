@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>MÜŞTERİLER</h2>
+<h2>TÜM MÜŞTERİLER</h2>
 <br />
 <table class="table table-bordered">
     <tr>
@@ -18,9 +18,10 @@
         <th>  BOY </th>
         <th>  TARİH </th>
         <th>  DURUM </th>
-        <th>  SİL </th>
-        <th>  DÜZENLE </th>
         <th>  BMI  </th>
+        <th>  DETAY </th>
+        <th>  DÜZENLE </th>
+        <th>  SİL </th>
     </tr>
     @foreach (var x in Model)
     {
@@ -35,9 +36,10 @@
             <th> @x.Height </th>
             <th> @x.Date </th>
             <th> @x.Station </th>
-            <th> <a href="/Admin/DeleteClient/@x.ID" class="btn btn-danger">Sil</a></th>
+            <th> <a href="/Admin/CalculateBMI/@x.ID" class="btn btn-secondary">Hesapla</a></th>
+            <th> <a href="/Admin/ClientDetail/@x.ID" class="btn btn-info">Detay</a></th>
             <th> <a href="/Admin/GetClient/@x.ID" class="btn btn-warning">Düzenle</a></th>
-            <th> <a href="/Admin/CalculateBMI/@x.ID" class="btn btn-info">Hesapla</a></th>
+            <th> <a href="/Admin/DeleteClient/@x.ID" class="btn btn-danger">Sil</a></th>
         </tr>
     }
 </table>

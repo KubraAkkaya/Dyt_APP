@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "ClientDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>  MÜŞTERİ DETAYI</h2>
+<br />
+<h3 style="border-left: 6px solid green;">&nbsp;  Ad: <b>@ViewBag.Name @ViewBag.Surname</b>  &nbsp; Yaş: @ViewBag.Age</h3>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr class="success">
+        <th > TARİH   </th>
+        <th > KİLO   </th>
+        <th>  YAĞ KÜTLESİ </th>
+        <th>  KAS KÜTLESİ </th>
+        <th>  BMI </th>
+        <th>  MİNBMI </th>
+        <th>  MAXBMI </th>
+        <th>  İDEAL KİLO</th>
+        <th>  KKAL </th>
+        <th>  KEMİK KÜTLESİ </th>
+        <th>  MET.YAŞ</th>
+        <th>  SIVI KÜTLESİ </th>
+        <th>  İÇ YAĞ </th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr  >
+
+            <th >@x.CalculationDate </th>
+            <th >@x.Weight </th>
+            <th> @x.FatMass </th>
+            <th> @x.MuscleMass </th>
+            <th> @x.BmiCalculation</th>
+            <th> @x.MinBMI</th>
+            <th> @x.MaxBMI</th>
+            <th> @x.IdealWeight</th>
+            <th> @x.Kcal</th>
+            <th> @x.BoneMass</th>
+            <th> @x.MetabolicAge</th>
+            <th> @x.LiquidMass</th>
+            <th> @x.InnerFat</th>
+
+        </tr>
+    }
+</table>
+
+
+
