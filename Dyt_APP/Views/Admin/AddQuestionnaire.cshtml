@@ -1,0 +1,115 @@
+﻿@model Dyt_APP.Models.Classes.Client
+
+@{
+    ViewBag.Title = "AddQuestionnaire";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ÖN BİLGİLENDİRME FORMU</h2>
+<h3 style="border-left: 6px solid green;">&nbsp;  Ad: <b>@Model.Name @Model.Surname</b>  &nbsp; Yaş: <b>@Model.Age</b> &nbsp; Meslek: <b>@Model.Job</b> </h3>
+
+<br />
+
+<br />
+<label for="HasChronicDisease">1. KRONİK HASTALIĞINIZ VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">2. DÜZENLİ KULLANDIĞINIZ İLAÇLAR VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">3. BESİN ALERJİSİ VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">4. GEÇİRDİĞİNİZ AMELİYAT / İŞLEM VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">5. ZAYIFLAMA İLACI / İDRAR SÖKTÜRÜCÜ İLAÇLAR KULLANIYOR MUSUNUZ? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">6. GÜNLÜK KAÇ SAAT UYUYORSUNUZ? (……………………………………………SAAT)</label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">7. REGL DÜZENİ </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">8. DÜZENLİ TUVALET ALIŞKANLIĞINIZ VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">9. YENİLDİĞİNDE MİDEYİ RAHATSIZ EDEN BESİNLER VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">10. SİNDİRİM SİSTEMİ HASTALIĞINIZ VAR MI? (ishal,kabızlık,ülser,reflü,gastrit…) </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease">11. DÜZENLİ YAPILAN FİZİKSEL AKTİVİTENİZ VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease"> 12. GÜNLÜK SU TÜKETİMİ ( BELİRTİNİZ:………………………………………………. LT ) </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+<br />
+<label for="HasChronicDisease"> 13. SİGARA / ALKOL TÜKETİMİ VAR MI? </label>
+<select name="HasChronicDisease" id="HasChronicDisease">
+    <option value="0">Var</option>
+    <option value="1">Yok</option>
+</select>
+<br />
+@Html.LabelFor(x => x.Questionnaire.HasChronicDisease)
+<br />
+@Html.RadioButtonFor(x => x.Questionnaire.HasChronicDisease, true, new { @class = "form-check-input" })
+<label class="form-check-label">Var</label>
+<br />
+@Html.RadioButtonFor(x => x.Questionnaire.HasChronicDisease, false, new { @class = "form-check-input" })
+<label class="form-check-label">Yok</label>
+<br />
+<!-- Diğer anket sorularını buraya ekleyebilirsiniz. -->
+<!-- İsterseniz anket bilgilerini daha güzel bir şekilde düzenleyebilirsiniz. -->
+
+<p><a href="@Url.Action("Index", "Admin")">Geri Dön</a></p>

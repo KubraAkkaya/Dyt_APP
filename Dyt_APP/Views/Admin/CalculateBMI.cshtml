@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>BMI Hesapla</h2>
+<h2>BMI HESAPLA</h2>
 <br />
 @using (Html.BeginForm("CalculateBMI", "Admin", FormMethod.Post))
 {
@@ -31,26 +31,25 @@
     <label for="Height">Boy</label>
     @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
     <br />
-
-    @Html.LabelFor(x => x.BMI.FatMass)
+    <label for="BMI.FatMass">Yağ Yüzdesi</label>
     @Html.TextBoxFor(x => x.BMI.FatMass, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.MuscleMass)
+    <label for="BMI.MuscleMass">Kas Yüzdesi</label>
     @Html.TextBoxFor(x => x.BMI.MuscleMass, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.Kcal)
+    <label for="BMI.Kcal">KKal</label>
     @Html.TextBoxFor(x => x.BMI.Kcal, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.BoneMass)
+    <label for="BMI.BoneMass">Kemik Yüzdesi</label>
     @Html.TextBoxFor(x => x.BMI.BoneMass, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.MetabolicAge)
+    <label for="BMI.MetabolicAge">Metabolik Yaş</label>
     @Html.TextBoxFor(x => x.BMI.MetabolicAge, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.LiquidMass)
+    <label for="BMI.LiquidMass">Sıvı Yüzdesi</label>
     @Html.TextBoxFor(x => x.BMI.LiquidMass, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.BMI.InnerFat)
+    <label for="BMI.InnerFat">İç Yağ</label>
     @Html.TextBoxFor(x => x.BMI.InnerFat, new { @class = "form-control" })
     <br />
 
@@ -80,7 +79,12 @@
                     <th>İDEAL KG</th>
                     <th>Hesaplama Tarihi</th>
                 </tr>
-                @foreach (var bmiData in Model.BMIs.Where(b => b.ClientId == Model.ID))
+                @{
+                    var lastFiveBMIs = Model.BMIs.Where(b => b.ClientId == Model.ID)
+                                                  .OrderByDescending(b => b.CalculationDate)
+                                                  .Take(5);
+                }
+                @foreach (var bmiData in lastFiveBMIs)
                 {
                     <tr>
                         <td>@bmiData.Weight</td>

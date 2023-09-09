@@ -25,15 +25,20 @@ namespace Dyt_APP.Models.Classes
         public int Age { get; set; }
         public string Name { get; set; } 
         public string Surname { get; set; } 
+        public string  Job { get; set; } 
         public DateTime Date { get; set; } 
         public double Height { get; set; }
         public double Weight { get; set; }
         public Gender Gender { get; set; }
         public BMI BMI { get; set; }
+        public Questionnaire Questionnaire { get; set; }
         public string Phone{ get; set; }
         public Station Station{ get; set; }
 
         [InverseProperty("Client")]
         public ICollection<BMI> BMIs { get; set; }
+
+  
+        public ICollection<Questionnaire> Questionnaires { get; set; }
     }
 }

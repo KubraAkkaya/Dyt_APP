@@ -11,27 +11,28 @@
     @Html.LabelFor(x => x.ID)
     @Html.TextBoxFor(x => x.ID, new { @class = "form-control", @readonly = "readonly" })
     <br />
-    @Html.LabelFor(x => x.Name)
+    <label for="name">Ad</label>
     @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Surname)
+    <label for="Surname">Soyad</label>
     @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Age)
+    <label for="age">Yaş</label>
     @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
     <br />
-
-    @Html.LabelFor(x => x.Weight)
+    <label for="job">Meslek</label>
+    @Html.TextBoxFor(x => x.Job, new { @class = "form-control" })
+    <br />
+    <label for="weight">Kilo</label>
     @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Height)
+    <label for="height">Boy</label>
     @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
     <br />
-
-    @Html.LabelFor(x => x.Date)
+    <label for="date">Tarih</label>
     @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Phone)
+    <label for="phone">Telefon</label>
     @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
     <br />
     <label for="gender">Cinsiyet Seçin:</label>

@@ -13,6 +13,7 @@ namespace Dyt_APP.Controllers
 
         Context contextAdmin = new Context();
         ClientEnumerable ce=new ClientEnumerable();
+
         [Authorize]
         public ActionResult Index()
         {
@@ -53,6 +54,7 @@ namespace Dyt_APP.Controllers
             findedClient.Surname=c.Surname;
             findedClient.Age=c.Age;
             findedClient.Gender=c.Gender;
+            findedClient.Job=c.Job;
             findedClient.Weight=c.Weight;
             findedClient.Height=c.Height;
             findedClient.Phone=c.Phone;
@@ -69,6 +71,27 @@ namespace Dyt_APP.Controllers
             return View(values);
         }
 
+        public ActionResult AddQuestionnaire(int id)
+        {
+            var client = contextAdmin.Clients.Find(id);
+
+            return View("AddQuestionnaire", client);
+        }
+        /*
+        [HttpPost]
+        public ActionResult AddQuestionnaire(int clientId, Questionnaire questionnaire)
+        {
+            var client = contextAdmin.Clients.Find(clientId);
+
+            if (client != null)
+            {
+                client.Questionnaires.Add(questionnaire); // Müşteriye ait anketi ekler
+                contextAdmin.SaveChanges();
+            }
+
+            return View("AddQuestionnaire");
+        }*/
+
         public ActionResult ClientDetail(int id)
         {
             var bmiList = contextAdmin.BMIs.Where(b => b.ClientId == id).ToList();
@@ -76,6 +99,7 @@ namespace Dyt_APP.Controllers
             ViewBag.Name = findedClient.Name;
             ViewBag.Surname = findedClient.Surname;
             ViewBag.Age = findedClient.Age;
+            ViewBag.Job = findedClient.Job;
             return View("ClientDetail",bmiList);
         }
    
