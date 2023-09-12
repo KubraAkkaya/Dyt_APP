@@ -60,6 +60,29 @@ namespace Dyt_APP.Controllers
             findedClient.Phone=c.Phone;
             findedClient.Station=c.Station;
             findedClient.Date=DateTime.Now;
+            findedClient.ChronicDiseaseDescription=c.ChronicDiseaseDescription;
+            findedClient.HasChronicDisease=c.HasChronicDisease;
+            findedClient.HasRegularMedications=c.HasRegularMedications;
+            findedClient.MedicationsDescription=c.MedicationsDescription;
+            findedClient.HasFoodAllergy=c.HasFoodAllergy;
+            findedClient.FoodAllergyDescription=c.FoodAllergyDescription;
+            findedClient.SurgeryOrProcedureDescription=c.SurgeryOrProcedureDescription;
+            findedClient.HasSurgeryOrProcedure=c.HasSurgeryOrProcedure;
+            findedClient.WeightLossOrDiureticDrugsDescription=c.WeightLossOrDiureticDrugsDescription;
+            findedClient.UsesWeightLossOrDiureticDrugs=c.UsesWeightLossOrDiureticDrugs;
+            findedClient.DailySleepHours=c.DailySleepHours;
+            findedClient.HasRegularToiletHabits=c.HasRegularToiletHabits;
+            findedClient.HasFoodDiscomfort=c.HasFoodDiscomfort;
+            findedClient.FoodDiscomfortDescription=c.FoodDiscomfortDescription;
+            findedClient.HasDigestiveSystemDisease=c.HasDigestiveSystemDisease;
+            findedClient.DigestiveSystemDiseaseDescription=c.DigestiveSystemDiseaseDescription;
+            findedClient.PhysicalActivityDescription=c.PhysicalActivityDescription;
+            findedClient.HasRegularPhysicalActivity=c.HasRegularPhysicalActivity;
+            findedClient.DailyWaterConsumption=c.DailyWaterConsumption;
+            findedClient.ConsumesTobaccoOrAlcohol=c.ConsumesTobaccoOrAlcohol;
+            findedClient.TobaccoOrAlcoholFrequency=c.TobaccoOrAlcoholFrequency;
+            findedClient.MenstrualCycle=c.MenstrualCycle;
+
             contextAdmin.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -71,27 +94,6 @@ namespace Dyt_APP.Controllers
             return View(values);
         }
 
-        public ActionResult AddQuestionnaire(int id)
-        {
-            var client = contextAdmin.Clients.Find(id);
-
-            return View("AddQuestionnaire", client);
-        }
-        /*
-        [HttpPost]
-        public ActionResult AddQuestionnaire(int clientId, Questionnaire questionnaire)
-        {
-            var client = contextAdmin.Clients.Find(clientId);
-
-            if (client != null)
-            {
-                client.Questionnaires.Add(questionnaire); // Müşteriye ait anketi ekler
-                contextAdmin.SaveChanges();
-            }
-
-            return View("AddQuestionnaire");
-        }*/
-
         public ActionResult ClientDetail(int id)
         {
             var bmiList = contextAdmin.BMIs.Where(b => b.ClientId == id).ToList();
@@ -102,8 +104,12 @@ namespace Dyt_APP.Controllers
             ViewBag.Job = findedClient.Job;
             return View("ClientDetail",bmiList);
         }
-   
-        
+        public ActionResult GetQuestion(int id)
+        {
+            var findedClient = contextAdmin.Clients.Find(id);
+            return View("GetQuestion", findedClient);
+        }
+
         public ActionResult CalculateBMI(int id)
         {
             var findedClient = contextAdmin.Clients.Find(id);

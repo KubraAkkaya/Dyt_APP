@@ -47,6 +47,151 @@
 
     <br />
     <br />
+    <br />
+    <label for="HasChronicDisease">
+        1. KRONİK HASTALIĞINIZ VAR MI? &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasChronicDisease, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasChronicDisease, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="ChronicDiseaseDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.ChronicDiseaseDescription, new { @class = "form-control" })
 
+    <br />
+    <br />
+    <label for="HasRegularMedications">
+        2. DÜZENLİ KULLANDIĞINIZ İLAÇLAR VAR MI?&nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularMedications, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularMedications, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="MedicationsDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.MedicationsDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="HasFoodAllergy">
+        3. BESİN ALERJİSİ VAR MI?&nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasFoodAllergy, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasFoodAllergy, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="FoodAllergyDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.FoodAllergyDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="HasSurgeryOrProcedure">
+        4. GEÇİRDİĞİNİZ AMELİYAT / İŞLEM VAR MI? &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasSurgeryOrProcedure, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasSurgeryOrProcedure, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="SurgeryOrProcedureDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.SurgeryOrProcedureDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="UsesWeightLossOrDiureticDrugs">
+        5. ZAYIFLAMA İLACI / İDRAR SÖKTÜRÜCÜ İLAÇLAR KULLANIYOR MUSUNUZ? &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.UsesWeightLossOrDiureticDrugs, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.UsesWeightLossOrDiureticDrugs, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="WeightLossOrDiureticDrugsDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.WeightLossOrDiureticDrugsDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="DailySleepHours">6. GÜNLÜK KAÇ SAAT UYUYORSUNUZ? </label>
+    @Html.TextBoxFor(x => x.DailySleepHours, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="MenstrualCycle">
+        7. REGL DÜZENİ &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.MenstrualCycle, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.MenstrualCycle, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <br />
+    <label for="HasRegularToiletHabits">
+        8. DÜZENLİ TUVALET ALIŞKANLIĞINIZ VAR MI?  &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularToiletHabits, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularToiletHabits, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <br />
+    <label for="HasFoodDiscomfort">
+        9. YENİLDİĞİNDE MİDEYİ RAHATSIZ EDEN BESİNLER VAR MI? &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasFoodDiscomfort, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasFoodDiscomfort, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="FoodDiscomfortDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.FoodDiscomfortDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="HasDigestiveSystemDisease">
+        10. SİNDİRİM SİSTEMİ HASTALIĞINIZ VAR MI? (ishal,kabızlık,ülser,reflü,gastrit…) &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasDigestiveSystemDisease, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasDigestiveSystemDisease, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="DigestiveSystemDiseaseDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.DigestiveSystemDiseaseDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="HasRegularPhysicalActivity">
+        11. DÜZENLİ YAPILAN FİZİKSEL AKTİVİTENİZ VAR MI? &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularPhysicalActivity, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.HasRegularPhysicalActivity, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="PhysicalActivityDescription">Var ise giriniz: </label>
+    @Html.TextBoxFor(x => x.PhysicalActivityDescription, new { @class = "form-control" })
+
+    <br />
+    <br />
+    <label for="DailyWaterConsumption">
+        12. GÜNLÜK SU TÜKETİMİ (LT BELİRTİNİZ:  ) &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.TextBoxFor(x => x.DailyWaterConsumption, new { @class = "form-control" })
+    </label>
+    <br />
+    <br />
+    <label for="ConsumesTobaccoOrAlcohol">
+        13. SİGARA / ALKOL TÜKETİMİ VAR MI?  &nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.ConsumesTobaccoOrAlcohol, true, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Var</label>&nbsp;&nbsp;
+        @Html.RadioButtonFor(x => x.ConsumesTobaccoOrAlcohol, false, new { @class = "form-check-input" })
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label">Yok</label>
+    </label>
+    <br />
+    <label for="TobaccoOrAlcoholFrequency">Var ise ne sıklıkla: </label>
+    @Html.TextBoxFor(x => x.TobaccoOrAlcoholFrequency, new { @class = "form-control" })
+
+    <br />
     <button class="btn btn-primary">Müşteri Ekle</button>
 </form>
