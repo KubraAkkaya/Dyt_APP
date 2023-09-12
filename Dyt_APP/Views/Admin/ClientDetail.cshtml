@@ -3,49 +3,70 @@
     ViewBag.Title = "ClientDetail";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>  MÜŞTERİ DETAYI</h2>
 <br />
-<h3 style="border-left: 6px solid green;">&nbsp;  Ad: <b>@ViewBag.Name @ViewBag.Surname</b>  &nbsp; Yaş: <b>@ViewBag.Age</b> &nbsp; Meslek:<b>@ViewBag.Job</b> </h3>
-<br />
-<br />
-<table class="table table-bordered">
-    <tr class="success">
-        <th > TARİH   </th>
-        <th > KİLO   </th>
-        <th>  YAĞ KÜTLESİ </th>
-        <th>  KAS KÜTLESİ </th>
-        <th>  BMI </th>
-        <th>  MİNBMI </th>
-        <th>  MAXBMI </th>
-        <th>  İDEAL KİLO</th>
-        <th>  KKAL </th>
-        <th>  KEMİK KÜTLESİ </th>
-        <th>  MET.YAŞ</th>
-        <th>  SIVI KÜTLESİ </th>
-        <th>  İÇ YAĞ </th>
-    </tr>
-    @foreach (var x in Model)
-    {
-        <tr  >
+<button class="btn btn-outline-warning" style="margin-left:1000px; border-block-color:black; color:black" onclick="printPDF()">Sayfayı Yazdır ve PDF Oluştur</button>
 
-            <th >@x.CalculationDate </th>
-            <th >@x.Weight </th>
-            <th> @x.FatMass </th>
-            <th> @x.MuscleMass </th>
-            <th> @x.BmiCalculation</th>
-            <th> @x.MinBMI</th>
-            <th> @x.MaxBMI</th>
-            <th> @x.IdealWeight</th>
-            <th> @x.Kcal</th>
-            <th> @x.BoneMass</th>
-            <th> @x.MetabolicAge</th>
-            <th> @x.LiquidMass</th>
-            <th> @x.InnerFat</th>
-
+<div id="pdfContent">
+    <h2 style="border-left: 6px solid green;">&nbsp;  MÜŞTERİ DETAYI</h2>
+    <br />
+    <h3 >  Ad: <b>@ViewBag.Name @ViewBag.Surname</b>  &nbsp; Yaş: <b>@ViewBag.Age</b> &nbsp; Meslek:<b>@ViewBag.Job</b> </h3>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr class="success">
+            <th> TARİH   </th>
+            <th> KİLO   </th>
+            <th>  YAĞ KÜTLESİ </th>
+            <th>  KAS KÜTLESİ </th>
+            <th>  BMI </th>
+            <th>  MİNBMI </th>
+            <th>  MAXBMI </th>
+            <th>  İDEAL KİLO</th>
+            <th>  KKAL </th>
+            <th>  KEMİK KÜTLESİ </th>
+            <th>  MET.YAŞ</th>
+            <th>  SIVI KÜTLESİ </th>
+            <th>  İÇ YAĞ </th>
         </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+
+                <th>@x.CalculationDate </th>
+                <th>@x.Weight </th>
+                <th> @x.FatMass </th>
+                <th> @x.MuscleMass </th>
+                <th> @x.BmiCalculation</th>
+                <th> @x.MinBMI</th>
+                <th> @x.MaxBMI</th>
+                <th> @x.IdealWeight</th>
+                <th> @x.Kcal</th>
+                <th> @x.BoneMass</th>
+                <th> @x.MetabolicAge</th>
+                <th> @x.LiquidMass</th>
+                <th> @x.InnerFat</th>
+
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<a href="@Url.Action("Index", "Admin")" class="btn" style="color: white; background-color: #95c481 ">Ana Sayfaya Dön</a>
+<br />
+<br />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    function printPDF() {
+        const pdfContent = document.getElementById("pdfContent");
+        const printWindow = window.open('', '', 'width=600,height=600');
+        printWindow.document.open();
+        printWindow.document.write('<html><head><title>ÖN BİLGİLENDİRME FORMU - PDF </title></head><body>');
+        printWindow.document.write('<div style="margin: 10px;">' + pdfContent.innerHTML + '</div>');
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.close();
     }
-</table>
-
-
+</script>
 

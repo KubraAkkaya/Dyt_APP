@@ -6,7 +6,7 @@
 }
 
 
-<h2>MÜŞTERİLER</h2>
+<h2 style="border-left: 6px solid green;">&nbsp;MÜŞTERİLER</h2>
 <br />
 <table class="table table-bordered">
     <tr>
@@ -21,9 +21,9 @@
         <th>  BOY </th>
         <th>  TARİH </th>
         <th>  DURUM </th>
-        <th>  BMI  </th>
         <th>  ÖN B.FORM  </th>
         <th>  DETAY </th>
+        <th>  BMI  </th>
         <th>  DÜZENLE </th>
         <th>  SİL </th>
     </tr>
@@ -41,10 +41,10 @@
             <th> @x.Height </th>
             <th> @x.Date </th>
             <th> @x.Station </th>
-            <th> <a href="/Admin/CalculateBMI/@x.ID" class="btn btn-secondary">Hesapla</a></th>
-            <th> <a href="/Admin/GetQuestion/@x.ID" class="btn btn-primary">Form Gör</a></th>
+            <th> <a href="/Admin/GetQuestion/@x.ID" class="btn" style="color: white; background-color: #3888c9 ">Form Gör</a></th>
             <th> <a href="/Admin/ClientDetail/@x.ID" class="btn btn-info">Detay</a></th>
-            <th> <a href="/Admin/GetClient/@x.ID" class="btn btn-warning">Düzenle</a></th>
+            <th> <a href="/Admin/CalculateBMI/@x.ID" class="btn" style="color: white; background-color: #8fd173 ">Hesapla</a></th>
+            <th> <a href="/Admin/GetClient/@x.ID" class="btn" style="color: white; background-color: #efb15b">Düzenle</a></th>
             <th> <a href="/Admin/DeleteClient/@x.ID" class="btn btn-danger">Sil</a></th>
         </tr>
     }

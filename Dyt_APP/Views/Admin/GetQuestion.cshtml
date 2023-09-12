@@ -4,11 +4,15 @@
     ViewBag.Title = "GetQuestion";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>ÖN BİLGİLENDİRME FORMU</h2>
-<h3 style="border-left: 6px solid green;">&nbsp;  Ad: <b>@Model.Name @Model.Surname</b>  &nbsp; Yaş: <b>@Model.Age</b> &nbsp; Meslek: <b>@Model.Job</b> </h3>
-
 <br />
+
+<button class="btn btn-outline-warning" style="margin-left:1000px; border-block-color:black; color:black" onclick="printPDF()">Sayfayı Yazdır ve PDF Oluştur</button>
+<div id="pdfContent">
+    <h2 style="border-left: 6px solid green;">&nbsp;ÖN BİLGİLENDİRME FORMU</h2>
+    <br />
+    <h3 >  Ad: <b>@Model.Name @Model.Surname</b>  &nbsp; Yaş: <b>@Model.Age</b> &nbsp; Meslek: <b>@Model.Job</b> </h3>
+
+    <br />
     <br />
     <label for="HasChronicDisease">
         1. KRONİK HASTALIĞINIZ VAR MI? &nbsp;&nbsp;&nbsp;&nbsp;
@@ -153,7 +157,27 @@
     <br />
     <label for="TobaccoOrAlcoholFrequency">Var ise ne sıklıkla: </label>
     @Html.TextBoxFor(x => x.TobaccoOrAlcoholFrequency, new { @class = "form-control" })
+</div>
+<br />
 
-    <br />
 
-<p><a href="@Url.Action("Index", "Admin")">Geri Dön</a></p>
+<a href="@Url.Action("Index", "Admin")" class="btn" style="color:white; background-color:mediumpurple">Ana Sayfaya Dön</a>
+<br />
+<br />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    function printPDF() {
+        const pdfContent = document.getElementById("pdfContent");
+        const printWindow = window.open('', '', 'width=600,height=600');
+        printWindow.document.open();
+        printWindow.document.write('<html><head><title>ÖN BİLGİLENDİRME FORMU - PDF </title></head><body>');
+        printWindow.document.write('<div style="margin: 10px;">' + pdfContent.innerHTML + '</div>');
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.close();
+    }
+</script>
+
+

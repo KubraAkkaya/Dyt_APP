@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Blog Düzenle</h2>
+<h2 style="border-left: 6px solid green;">&nbsp;MÜŞTERİ DÜZENLE</h2>
 <br />
 @using (Html.BeginForm("UpdateClient", "Admin", FormMethod.Post))
 {
@@ -195,5 +195,7 @@
     @Html.TextBoxFor(x => x.TobaccoOrAlcoholFrequency, new { @class = "form-control" })
 
     <br />
-    <button class="btn btn-primary">Güncelle</button>
+    <button class="btn btn-success">Güncelle</button>
+    <br />
+    <br />
 }
